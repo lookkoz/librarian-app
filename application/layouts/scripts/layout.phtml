@@ -1,0 +1,26 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+<head>
+    <?php 
+      $styleUpdateSha = sha1(filemtime(realpath(APPLICATION_PATH . '/../public/css/style.css')));
+      $scriptUpdateSha = sha1(filemtime(realpath(APPLICATION_PATH . '/../public/js/script.js')));
+      
+      $this->headMeta()->setCharset('utf-8');
+      $this->headTitle('Librarian Application');
+      $this->headScript()->appendFile($this->baseUrl('public/js/jquery-1.7.1.min.js'));
+      $this->headScript()->appendFile($this->baseUrl('public/js/script.js?'.$scriptUpdateSha));
+
+      $this->headLink()->appendStylesheet($this->baseUrl('public/css/style.css?'.$styleUpdateSha));
+    ?>
+    <?= $this->headTitle() . "\n"; ?>
+    <?= $this->headMeta() . "\n"; ?>
+    <?= $this->headLink() . "\n"; ?>
+    <?= $this->headScript() . "\n"; ?>
+    <?= $this->headStyle(); ?>
+</head>
+
+<body>
+<?php echo $this->layout()->content; ?>
+
+</body>
+</html>
