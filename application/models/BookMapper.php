@@ -40,9 +40,9 @@ class Application_Model_BookMapper
         }
     }
     
-    public function find($id, Application_Model_Book $book)
+    public function find($isbn, Application_Model_Book $book)
     {
-        $result = $this->getDbTable()->find($id);
+        $result = $this->getDbTable()->find($isbn);
         if (0 == count($result)) {
             return;
         }

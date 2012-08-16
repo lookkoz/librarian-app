@@ -32,9 +32,17 @@ class BookController extends Zend_Controller_Action
         
     }
     
-    public function borrowBook()
+    public function borrowBookAction()
     {
-        $this->getRequest()->isPost();
+        $isbn = (int) $this->getRequest()->getParam('isbn');
+        $book = new Application_Model_Book();
+        $book->find($isbn);
+        
+        $reader = new Application_Model_Reader();
+        $reader->fetchAll();
+        
+        $this->view->reader = $readers;
+        $this->view->book = $book;
     }
 }
 

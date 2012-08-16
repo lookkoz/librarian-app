@@ -109,8 +109,8 @@ class Application_Model_Book
         return $this->getMapper()->fetchAll();
     }
 
-    public function find($id) {
-        $this->getMapper()->find($id, $this);
+    public function find($isbn) {
+        $this->getMapper()->find($isbn, $this);
         return $this;
     }
     
