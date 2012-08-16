@@ -53,9 +53,13 @@ class Application_Model_UserMapper
     private function setUserData($row, Application_Model_User &$user) {
         $user->setId($row->id)
             ->setEmail($row->email)
-            ->setUsername($row->username)
+            ->setPassword($row->password)
             ->setFirstname($row->firstname)
             ->setLastname($row->lastname)
+            ->setAddress($row->address)
+            ->setCity($row->city)
+            ->setPostcode($row->postcode)
+            ->setRole($row->role)
             ->setCreateDate($row->create_date)
             ->setStatus($row->status)
             ->setLastActivity($row->last_activity);

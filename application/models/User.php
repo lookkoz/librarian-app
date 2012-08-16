@@ -4,8 +4,10 @@ class Application_Model_User
 {
     protected $_id;
     protected $_email;
+    protected $_password;
     protected $_firstname;
     protected $_lastname;
+    protected $_role;
     protected $_status;
     protected $_createDate;
     protected $_lastActivity;
@@ -75,14 +77,6 @@ class Application_Model_User
     public function getPassword() {
         return $this->_password;
     }
-
-    public function setUsername($username) {
-        $this->_username = $username;
-        return $this;
-    }
-    public function getUsername() {
-        return $this->_username;
-    }
     
     public function setFirstname($firstname) {
         $this->_firstname = $firstname;
@@ -100,6 +94,14 @@ class Application_Model_User
         return $this->_lastname;
     }
     
+    public function setRole($role) {
+        $this->_role = $role;
+        return $this;
+    }
+    
+    public function getPostcode() {
+        return $this->_postcode;
+    }
     public function setStatus($status) {
         $this->_status = $status;
         return $this;
@@ -162,9 +164,10 @@ class Application_Model_User
         return array(
             'id' => $this->getId(),
             'email' => $this->getEmail(),
-            'username' => $this->getUsername(),
+            'password' => $this->getPassword(),
             'firstname' => $this->getFirstname(),
             'lastname' => $this->getLastname(),
+            'role' => $this->getRole(),
             'status' => $this->getStatus(),
             'create_date' => $this->getCreateDate(),
             'last_activity' => $this->getLastActivity(),

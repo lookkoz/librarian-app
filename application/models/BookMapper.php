@@ -49,6 +49,28 @@ class Application_Model_BookMapper
         $this->setBookData($result->current(), $book);
         return $book;
     }
+    
+    public function fetchAll()
+    {
+        $resultSet = $this->getDbTable()->fetchAll();
+        $entries   = array();
+        foreach ($resultSet as $row) {
+            $entry = new Application_Model_Book();
+            $this->setBookData($row, $entry);
+            $entries[] = $entry;
+        }
+        return $entries;
+    }
+    
+    public function getPaginator() {
+        $select = $this->getDbTable()->selectAll();
+        $adapter = new Zend_Paginator_Adapter_DbSelect($select);
+        return new Zend_Paginator($adapter);
+    }
+    
+    public function borrowBook() {
+        
+    }
 
     private function setBookData($row, Application_Model_Book &$book) {
         $book->setIsbn($row->isbn)

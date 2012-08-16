@@ -1,1 +1,28 @@
 <br /><br /><center>View script for controller <b>Book</b> and script/action name <b>index</b></center>
+<table>
+    <thead>
+        <tr>
+            <td>ISBN</td>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Year</td>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($this->books as $book): ?>
+        <tr>
+            <td><?php echo $book['isbn']; ?></td>
+            <td><?php echo $book['title']; ?></td>
+            <td><?php echo $book['author']; ?></td>
+            <td><?php echo $book['year']; ?></td>
+            <td>
+                <?php if(!$book['is_lent']): ?>
+                    <a href="<?php echo $this->url(array('controller' => 'book', 'action' => 'borrow-book', 'isbn' => $this->escape($book['isbn']))); ?>">Borrow book</a>
+                <?php else: ?>
+                    Book is lent
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php endforeach;?>
+    </tbody>
+</table>

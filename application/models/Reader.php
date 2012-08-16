@@ -1,11 +1,14 @@
 <?php
 
-class Application_Model_Book
+class Application_Model_Reader
 {
-    protected $_isbn;
-    protected $_title;
-    protected $_author;
-    protected $_year;
+    protected $_id;
+    protected $_firstname;
+    protected $_lastname;
+    protected $_address;
+    protected $_city;
+    protected $_postcode;
+    protected $_createDate;
     
     protected $_mapper;
     
@@ -21,7 +24,7 @@ class Application_Model_Book
         $filter = new Zend_Filter_Word_UnderscoreToCamelCase();
         $method = 'set' . $filter->filter($name);
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Invalid book property');
+            throw new Exception('Invalid user property');
         }
         $this->$method($value);
     }
@@ -31,7 +34,7 @@ class Application_Model_Book
         $filter = new Zend_Filter_Word_UnderscoreToCamelCase();
         $method = 'get' . $filter->filter($name);
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Invalid book property');
+            throw new Exception('Invalid user property');
         }
         return $this->$method();
     }
@@ -49,36 +52,60 @@ class Application_Model_Book
         return $this;
     }
     
-    public function setIsbn($isbn) {
-        $this->_isbn = (int)$isbn;
+    public function setId($id) {
+        $this->_id = (int)$id;
         return $this;
     }
-    public function getIsbn() {
-        return $this->_isbn;
+    public function getId() {
+        return $this->_id;
+    }
+    
+    public function setFirstname($firstname) {
+        $this->_firstname = $firstname;
+        return $this;
+    }
+    public function getFirstname() {
+        return $this->_firstname;
     }
 
-    public function setTitle($title) {
-        $this->_title = $title;
+    public function setLastname($lastname) {
+        $this->_lastname = $lastname;
         return $this;
     }
-    public function getTitle() {
-        return $this->_title;
+    public function getLastname() {
+        return $this->_lastname;
+    }
+    
+    public function setAddress($address) {
+        $this->_address = $address;
+        return $this;
+    }
+    public function getAddress() {
+        return $this->_address;
+    }
+    
+    public function setCity($city) {
+        $this->_city = $city;
+        return $this;
+    }
+    public function getCity() {
+        return $this->_city;
+    }
+    
+    public function setPostcode($postcode) {
+        $this->_postcode = $postcode;
+        return $this;
+    }
+    public function getPostcode() {
+        return $this->_postcode;
     }
 
-    public function setAuthor($author) {
-        $this->_author = $author;
+    public function setCreateDate($createDate) {
+        $this->_createDate = $createDate;
         return $this;
     }
-    public function getAuthor() {
-        return $this->_author;
-    }
-
-    public function setYear($year) {
-        $this->_year = $year;
-        return $this;
-    }
-    public function getYear() {
-        return $this->_year;
+    public function getCreateDate() {
+        return $this->_createDate;
     }
     
     public function setMapper($mapper) {
@@ -87,12 +114,12 @@ class Application_Model_Book
     }
 
     /**
-     * @return Application_Model_BookMapper
+     * @return Application_Model_ReaderMapper
      */
     public function getMapper()
     {
         if (null === $this->_mapper) {
-            $this->setMapper(new Application_Model_BookMapper());
+            $this->setMapper(new Application_Model_ReaderMapper());
         }
         return $this->_mapper;
     }
@@ -114,22 +141,16 @@ class Application_Model_Book
         return $this;
     }
     
-    public function getPaginator() {
-        return $this->getMapper()->getPaginator();
-    }
-    
-    public function borrowBook($readerId, $bookIsbn) {
-        $this->getMapper()->borrowBook($readerId, $bookIsbn);
-        return $this;
-    }
-    
     public function __toArray()
     {
         return array(
             'id' => $this->getId(),
-            'title' => $this->getTitle(),
-            'author' => $this->getAuthor(),
-            'year' => $this->getYear(),
+            'firstname' => $this->getFirstname(),
+            'lastname' => $this->getLastname(),
+            'address' => $this->getAddress(),
+            'city' => $this->getCity(),
+            'postcode' => $this->getPostcode(),
+            'create_date' => $this->getCreateDate(),
         );
     }
 

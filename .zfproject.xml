@@ -14,22 +14,31 @@
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="signIn"/>
         </controllerFile>
         <controllerFile controllerName="Book">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Reader">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
+      <formsDirectory>
+        <formFile formName="UserSignIn"/>
+      </formsDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="User"/>
           <dbTableFile dbTableName="Book"/>
+          <dbTableFile dbTableName="Reader"/>
         </dbTableDirectory>
         <modelFile modelName="UserMapper"/>
         <modelFile modelName="User"/>
         <modelFile modelName="BookMapper"/>
         <modelFile modelName="Book"/>
+        <modelFile modelName="Reader"/>
+        <modelFile modelName="ReaderMapper"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
@@ -44,6 +53,12 @@
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Book">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="signIn"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Reader">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
@@ -77,6 +92,7 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile/>
         <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
         </testApplicationControllerDirectory>
